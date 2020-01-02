@@ -1,0 +1,21 @@
+version: '3'
+services:
+  golang_application:
+    build: 
+      context: ./go-app
+      dockerfile: Dockerfile
+    restart: always
+  java_application:
+    build: 
+      context: ./java-app
+      dockerfile: Dockerfile
+    restart: always
+  load_balancer:
+    build:
+      context: ./load-balancer
+      dockerfile: Dockerfile
+    links:
+    - golang_application
+    - java_application
+    ports:
+    - "8080:8080"
