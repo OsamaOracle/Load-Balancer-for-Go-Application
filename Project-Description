@@ -1,0 +1,10 @@
+There are two binaries within this setup, one Go based application, one Java-based application. Both are providing an HTTP service with the same endpoints
+
+Route       Description
+/           A static site. Should not appear in the final setup as it is but redirect to /hotels.
+/hotels     JSON object containing hotel search results
+/health     Exposes the health status of the application
+/ready      Readiness probe
+/metrics    Exposes metrics of the application
+
+The configuration for traffic distribution should be as follows: 70% of the requests are going to the application written in Go, 30% of the requests are going to the application written in Java.
